@@ -20,8 +20,22 @@ interface Villager {
 })
 export class VillagersComponent implements OnInit {
   public villagers: Villager[];
+  public mainCharacter : Villager;
 
   constructor() {
+    this.mainCharacter = {
+      id: 3,
+      name: "Blair",
+      personality: "Adventurous",
+      birthday: new Date(1988, 9, 22),
+      gender: "Female",
+      "catch-phrase": "whoop",
+      image_uri: "https://acnhapi.com/v1/images/villagers/3",
+      "bubble-color": "#990099",
+      "text-color": "#fffce9",
+      showMoreInfo: true
+      };
+    
     this.villagers = [
       {
         id: 12,
@@ -60,6 +74,18 @@ export class VillagersComponent implements OnInit {
         showMoreInfo: true,
       },
     ];
+  }
+
+  delete(event) {
+    console.log(event);
+    const id = event;
+
+    const deleteIndex = this.villagers.findIndex(function(villager) {
+      return villager.id ===id;
+    });
+
+    //delet from arra
+    this.villagers.splice(deleteIndex, 1);
   }
 
   toggleMoreInfo(villager) {
